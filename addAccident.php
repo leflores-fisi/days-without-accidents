@@ -1,20 +1,20 @@
 <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  $accidents = [];
-  if (file_exists("accidents.json")) {
-    $accidents = json_decode(file_get_contents("accidents.json"), true);
-  }
+  require_once "database.php";
+
   $new_accident = $_POST;
-  $new_accident["level"] = intval($new_accident["level"]);
 
-  $accidents[] = $new_accident; # pushing
+  # Extracting information
+  $title = $new_accident["title"];
+  $date  = $new_accident["date"];
+  $level = intval($new_accident["level"]);
+  $description = $new_accident["description"];
 
-  //var_dump($accidents);
-  //die();
+  # Inserting a new row TODO: validations
+  $insert_statement = $DBconnection->prepare("INSERT INTO accidents (title, date, level, description) VALUES ('$title', '$date', $level, '$description')");
+  $insert_statement->execute();
 
-  file_put_contents("accidents.json", json_encode($accidents));
   header("Location: index.php"); # redirection
-
 } ?>
 
 <?php require_once "partials/header.php" ?>
@@ -36,7 +36,7 @@
           </label>
         </div>
         <div class="relative z-0 mb-6 w-full group">
-          <label for="level" class="block mb-2 text-sm font-medium text-gray-800">Fatallity level</label>
+          <label for="level" class="block mb-2 text-sm font-medium text-gray-800">Fatality level</label>
           <select
             name="level"
             form="accident_form"

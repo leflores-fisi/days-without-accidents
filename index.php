@@ -1,8 +1,8 @@
 <?php
-  $accidents = [];
-  if (file_exists("accidents.json")) {
-    $accidents = json_decode(file_get_contents("accidents.json"), true);
-  }
+  require_once "database.php";
+
+  # Getting all the accidents data
+  $accidents = $DBconnection->query("SELECT * FROM accidents");
 
   function level_color(int $level) : string {
     if ($level == 1) return 'yellow';
