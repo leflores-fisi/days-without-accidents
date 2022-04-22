@@ -33,7 +33,6 @@
           <h1 class="text-xl font-semibold text-gray-800"><?= $accident["title"] ?></h1>
           <p class="text-base text-gray-800"><?= $accident["description"] ?></p>
         </div>
-
         <?php if (isset($accident["more_info"])) : ?>
           <div>
             <div class="flex items-center mt-2 text-gray-700">
@@ -42,6 +41,14 @@
             </div>
           </div>
         <?php endif ?>
+        <div class="flex gap-2 text-xs mt-2">
+          <a href="deleteAccident.php?id=<?= $accident["id"] ?>" class="text-red-600 underline">
+            Delete
+          </a>
+          <a href="updateAccident.php?id=<?= $accident["id"] ?>" class="text-gray-600 underline">
+            Update
+          </a>
+        </div>
       </div>
     <?php endforeach ?>
   </div>
