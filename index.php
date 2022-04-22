@@ -4,11 +4,12 @@
   # Getting all the accidents data
   $accidents = $DBconnection->query("SELECT * FROM accidents");
 
-  function level_color(int $level) : string {
-    if ($level == 1) return 'yellow';
-    if ($level == 2) return 'orange';
-    if ($level == 3) return 'red';
-    return 'gray';
+  function level_color(int $level): string {
+    return match($level) {
+      1 => 'yellow',
+      2 => 'orange',
+      3 => 'red'
+    };
   }
 ?>
 
