@@ -8,7 +8,8 @@
     return match($level) {
       1 => 'yellow',
       2 => 'orange',
-      3 => 'red'
+      3 => 'red',
+      default => 'gray'
     };
   }
 ?>
