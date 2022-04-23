@@ -15,8 +15,19 @@ CREATE TABLE accidents (
   level TINYINT(3)
 );
 
-INSERT INTO accidents ( title, description, date, level )
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+  user_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255),
+  password VARCHAR(255)
+);
+
+INSERT INTO accidents (title, description, date, level)
 VALUES ( "Pikatrueno en el techo", "Un pikachu hizo desmanes", "2019-01-01", 2 ),
        ( "Un perro atacó al jefe", "Le mordió la piernaAAAA", "2022-04-21", 3 ),
        ( "Incendio en la cocina", "Fue épico, pero catastrófico", "2022-04-20", 2 ),
        ( "Borrachera en el área de recursos humanos", "Se salió de control", "2022-04-10", 2 );
+
+INSERT INTO users (username, password)
+VALUES ("test", 123);
