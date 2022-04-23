@@ -47,7 +47,7 @@
         "description" => $description,
         "id" => $accident_id
       ]);
-      header("Location: index.php"); # redirection
+      header("Location: app.php"); # redirection
     }
   }
 ?>

@@ -13,5 +13,5 @@ if ($search_statement->rowCount() == 0) {
 else {
   $delete_statement = $DBconnection->prepare("DELETE FROM accidents WHERE id = :id");
   $delete_statement->execute(["id" => $accident_id]);
-  header("Location: index.php");
+  header("Location: app.php");
 }

@@ -33,7 +33,7 @@
         "description" => $description
       ]);
 
-      header("Location: index.php"); # redirection
+      header("Location: app.php"); # redirection
     }
   }
 ?>
