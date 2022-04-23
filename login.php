@@ -11,7 +11,7 @@
       WHERE username = :username
     ");
     $search_statement->execute(["username" => $username]);
-    $user = $search_statement->fetch();
+    $user = $search_statement->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
       if (password_verify($password, $user["password"])) {

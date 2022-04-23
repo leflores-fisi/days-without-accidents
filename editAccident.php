@@ -13,7 +13,7 @@
   }
 
   # Exist in database
-  $accident_to_edit = $search_statement->fetch();
+  $accident_to_edit = $search_statement->fetch(PDO::FETCH_ASSOC);
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $edited_accident = $_POST;
