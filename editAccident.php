@@ -4,8 +4,7 @@
   $submit_error = null;
 
   $search_statement = $DBconnection->prepare("SELECT * FROM accidents WHERE id = :id");
-  $search_statement->bindParam("id", $accident_id);
-  $search_statement->execute();
+  $search_statement->execute(["id" => $accident_id]);
 
   if ($search_statement->rowCount() == 0) {
     http_response_code(404);
@@ -41,14 +40,13 @@
             description = :description
         WHERE id = :id
       ");
-      $insert_statement->bindParam("title", $title);
-      $insert_statement->bindParam("date", $date);
-      $insert_statement->bindParam("level", $level);
-      $insert_statement->bindParam("description", $description);
-      $insert_statement->bindParam("id", $accident_id);
-
-      $insert_statement->execute();
-
+      $insert_statement->execute([
+        "title" => $title,
+        "date" => $date,
+        "level" => $level,
+        "description" => $description,
+        "id" => $accident_id
+      ]);
       header("Location: index.php"); # redirection
     }
   }

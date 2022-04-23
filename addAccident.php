@@ -23,13 +23,15 @@
     else {
       # Inserting a new row TODO: validations
       $insert_statement = $DBconnection->prepare("INSERT INTO accidents
-        (title, date, level, description) VALUES (:title, :date, :level, :description)");
-
-      $insert_statement->bindParam("title", $title);
-      $insert_statement->bindParam("date", $date);
-      $insert_statement->bindParam("level", $level);
-      $insert_statement->bindParam("description", $description);
-      $insert_statement->execute();
+        (title, date, level, description)
+        VALUES (:title, :date, :level, :description)
+      ");
+      $insert_statement->execute([
+        "title" => $title,
+        "date" => $date,
+        "level" => $level,
+        "description" => $description
+      ]);
 
       header("Location: index.php"); # redirection
     }

@@ -4,8 +4,7 @@ require_once "database.php";
 $accident_id = $_GET["id"];
 
 $search_statement = $DBconnection->prepare("SELECT * FROM accidents WHERE id = :id");
-$search_statement->bindParam("id", $accident_id);
-$search_statement->execute();
+$search_statement->execute(["id" => $accident_id]);
 
 if ($search_statement->rowCount() == 0) {
   http_response_code(404);
@@ -13,7 +12,6 @@ if ($search_statement->rowCount() == 0) {
 }
 else {
   $delete_statement = $DBconnection->prepare("DELETE FROM accidents WHERE id = :id");
-  $delete_statement->bindParam("id", $accident_id);
-  $delete_statement->execute();
+  $delete_statement->execute(["id" => $accident_id]);
   header("Location: index.php");
 }
