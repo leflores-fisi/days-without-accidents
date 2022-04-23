@@ -45,8 +45,8 @@
           <a href="deleteAccident.php?id=<?= $accident["id"] ?>" class="text-red-600 underline">
             Delete
           </a>
-          <a href="updateAccident.php?id=<?= $accident["id"] ?>" class="text-gray-600 underline">
-            Update
+          <a href="editAccident.php?id=<?= $accident["id"] ?>" class="text-gray-600 underline">
+            Edit
           </a>
         </div>
       </div>
