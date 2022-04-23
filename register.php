@@ -1,17 +1,33 @@
 <?php
+  $register_error = null;
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require "database.php";
 
     $username = $_POST["username"];
-    $password = $_POST["password"]; 
+    $password = $_POST["password"];
 
-    $create_statement = $DBconnection->prepare("INSERT INTO users
-      (username, password)
-      VALUES (:username, :password)
+    $search_statement = $DBconnection->prepare("SELECT * FROM users
+      WHERE username = :username
     ");
-    $create_statement->execute(["username" => $username, "password" => $password]);
+    $search_statement->execute(["username" => $username]);
 
-    header("Location: app.php"); # redirection
+    if ($search_statement->rowCount() > 0) {
+      $register_error = "Username already registered!";
+    }
+    else {
+      $create_statement = $DBconnection->prepare("INSERT INTO users
+        (username, password)
+        VALUES (:username, :password)
+      ");
+      $create_statement->execute([
+        "username" => $username,
+        "password" => password_hash($password, PASSWORD_BCRYPT)
+      ]);
+  
+      header("Location: app.php"); # redirection
+    }
+
   }
 ?>
 

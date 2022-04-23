@@ -8,15 +8,21 @@
     $password = $_POST["password"]; 
 
     $search_statement = $DBconnection->prepare("SELECT * FROM users
-      WHERE username = :username AND password = :password
-      LIMIT 1
+      WHERE username = :username
     ");
-    $search_statement->execute(["username" => $username, "password" => $password]);
-    if ($search_statement->rowCount() == 0) {
-      $login_error = "Invalid username or password";
+    $search_statement->execute(["username" => $username]);
+    $user = $search_statement->fetch();
+
+    if ($user) {
+      if (password_verify($password, $user["password"])) {
+        header("Location: app.php");
+      }
+      else {
+        $login_error = "Credentials seems incorrect";
+      }
     }
     else {
-      header("Location: app.php");
+      $login_error = "Credentials seems incorrect";
     }
   }
 ?>
