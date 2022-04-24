@@ -1,5 +1,10 @@
 <?php
   $register_error = null;
+  session_start();
+  if (isset($_SESSION)) {
+    header("Location: app.php");
+    return;
+  }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require "database.php";
@@ -24,8 +29,12 @@
         "username" => $username,
         "password" => password_hash($password, PASSWORD_BCRYPT)
       ]);
-  
-      header("Location: app.php"); # redirection
+      # Setting up the session
+      session_start();
+      unset($user["password"]);
+      $_SESSION["user"] = $user;
+
+      header("Location: app.php"); # app redirection
     }
 
   }

@@ -1,5 +1,10 @@
 <?php
   $login_error = null;
+  session_start();
+  if (isset($_SESSION)) {
+    header("Location: app.php");
+    return;
+  }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require "database.php";
@@ -15,7 +20,12 @@
 
     if ($user) {
       if (password_verify($password, $user["password"])) {
-        header("Location: app.php");
+        # Setting up the session
+        session_start();
+        unset($user["password"]);
+        $_SESSION["user"] = $user;
+
+        header("Location: app.php"); # app redirection
       }
       else {
         $login_error = "Credentials seems incorrect";
