@@ -31,7 +31,9 @@
               <input type="text" id="email-address-icon" class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
             </div>
             <?php if (isset($_SESSION["user"])): ?>
-              <a href="logout.php">Logout</a>
+              <a class="inline-block m-auto bg-gray-100 font-thin w-fit border border-gray-600 px-6 mx-2 py-1 text-sm text-gray-600 rounded-sm" href="logout.php">
+                Log out  
+              </a>
             <?php else: ?>
               <a class="inline-block m-auto bg-gray-100 font-thin w-fit border border-gray-600 px-6 mx-2 py-1 text-sm text-gray-600 rounded-sm" href="login.php">
                 Log in
