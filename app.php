@@ -1,6 +1,8 @@
 <?php
   require_once "database.php";
 
+  session_start();
+
   # Getting all the accidents data
   $accidents = $DBconnection->query("SELECT * FROM accidents");
 

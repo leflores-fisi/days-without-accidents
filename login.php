@@ -1,6 +1,7 @@
 <?php
   $login_error = null;
   session_start();
+
   if (isset($_SESSION)) {
     header("Location: app.php");
     return;
