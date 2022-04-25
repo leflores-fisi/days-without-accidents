@@ -1,4 +1,11 @@
 <?php
+  session_start();
+  # protected route
+  if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+    return;
+  }
+
   require "database.php";
   $accident_id = $_GET["id"]; # Query uri param
   $submit_error = null;

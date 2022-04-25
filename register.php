@@ -1,10 +1,10 @@
 <?php
-  $register_error = null;
   session_start();
-  if (isset($_SESSION)) {
-    header("Location: app.php");
-    return;
-  }
+  # no session route
+  if (isset($_SESSION["user"])) header("Location: app.php");
+  else session_destroy();
+
+  $register_error = null;
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require "database.php";
@@ -30,6 +30,8 @@
         "password" => password_hash($password, PASSWORD_BCRYPT)
       ]);
       # Setting up the session
+      $search_statement->execute(["username" => $username]);
+      $user = $search_statement->fetch(PDO::FETCH_ASSOC);
       session_start();
       unset($user["password"]);
       $_SESSION["user"] = $user;

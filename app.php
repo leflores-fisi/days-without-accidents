@@ -1,7 +1,12 @@
 <?php
-  require_once "database.php";
-
   session_start();
+  # protected route
+  if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+    return;
+  }
+
+  require_once "database.php";
 
   # Getting all the accidents data
   $accidents = $DBconnection->query("SELECT * FROM accidents");

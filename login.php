@@ -1,11 +1,10 @@
 <?php
-  $login_error = null;
   session_start();
+  # no session route
+  if (isset($_SESSION["user"])) header("Location: app.php");
+  else session_destroy();
 
-  if (isset($_SESSION)) {
-    header("Location: app.php");
-    return;
-  }
+  $login_error = null;
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require "database.php";
