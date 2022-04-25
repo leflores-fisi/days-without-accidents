@@ -17,9 +17,16 @@
     http_response_code(404);
     echo "HTTP 404 NOT FOUND with id $accident_id";
   }
-  else {
-    $delete_statement = $DBconnection->prepare("DELETE FROM accidents WHERE id = :id");
-    $delete_statement->execute(["id" => $accident_id]);
-    header("Location: app.php");
+  $accident_to_delete = $search_statement->fetch(PDO::FETCH_ASSOC);
+
+  # Check if the content belongs to the user
+  if ($accident_to_delete["user_id"] !== $_SESSION["user"]["user_id"]) {
+    http_response_code(403);
+    echo "HTTP 403 NOT ALLOWED";
+    die();
   }
+
+  $delete_statement = $DBconnection->prepare("DELETE FROM accidents WHERE id = :id");
+  $delete_statement->execute(["id" => $accident_id]);
+  header("Location: app.php");
 ?>

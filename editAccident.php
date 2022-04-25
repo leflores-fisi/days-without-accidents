@@ -22,6 +22,13 @@
   # Exist in database
   $accident_to_edit = $search_statement->fetch(PDO::FETCH_ASSOC);
 
+  # Check if the content belongs to the user
+  if ($accident_to_edit["user_id"] !== $_SESSION["user"]["user_id"]) {
+    http_response_code(403);
+    echo "HTTP 403 NOT ALLOWED";
+    die();
+  }
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $edited_accident = $_POST;
 
