@@ -9,7 +9,7 @@
   require_once "database.php";
 
   # Getting all the accidents data
-  $accidents = $DBconnection->query("SELECT * FROM accidents");
+  $accidents = $DBconnection->query("SELECT * FROM accidents WHERE user_id = {$_SESSION["user"]["user_id"]}");
 
   function level_color(int $level): string {
     return match($level) {

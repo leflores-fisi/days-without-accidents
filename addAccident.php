@@ -30,8 +30,8 @@
     else {
       # Inserting a new row TODO: validations
       $insert_statement = $DBconnection->prepare("INSERT INTO accidents
-        (title, date, level, description)
-        VALUES (:title, :date, :level, :description)
+        (user_id, title, date, level, description)
+        VALUES ({$_SESSION["user"]["user_id"]}, :title, :date, :level, :description)
       ");
       $insert_statement->execute([
         "title" => $title,
