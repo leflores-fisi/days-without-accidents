@@ -11,11 +11,16 @@
   # Getting all the accidents data
   $accidents = $DBconnection->query("SELECT * FROM accidents WHERE user_id = {$_SESSION["user"]["user_id"]}");
 
-  $search_date_statement = $DBconnection->query("SELECT date FROM accidents ORDER BY date DESC LIMIT 1");
-  $last_accident_date = $search_date_statement->fetch(PDO::FETCH_ASSOC)["date"];
-  $last_accident_date = new DateTime($last_accident_date);
+  $search_statement = $DBconnection->query("SELECT timestamp FROM accidents WHERE user_id = {$_SESSION["user"]["user_id"]} ORDER BY timestamp DESC LIMIT 1");
 
-  $days_without = (time() - $last_accident_date->getTimestamp())/60/60/24;
+  $last_accident_timestamp = $search_statement->fetch(PDO::FETCH_ASSOC)["timestamp"] ?? null;
+
+  if ($last_accident_timestamp) {
+    $seconds_without = (time() - $last_accident_timestamp);
+  }
+  else {
+    $seconds_without = "??";
+  }
 
   function level_color(int $level): string {
     return match($level) {
@@ -31,14 +36,14 @@
 
 <main class="h-full mb-16">
   <div class="flex justify-center items-center bg-gray-600 h-64">
-    <div class="text-9xl font-mono mr-4"><?= $days_without ?></div>
-    <div class="text-2xl font-sans">days without accidents</div>
+    <div class="text-9xl font-mono mr-4"><?= $seconds_without ?></div>
+    <div class="text-2xl font-sans">seconds without accidents</div>
   </div>
   <div class="container m-auto p-3">
     <?php foreach ($accidents as $accident) : ?>
       <div class="w-full max-w-2xl px-4 py-3 mx-auto bg-white mt-4">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-light text-gray-500"><?= $accident["date"] ?></span>
+          <span class="text-xs font-mono font-light text-gray-500"><?= $accident["timestamp"] ?></span>
           <span class="px-3 py-1 text-xs text-white-800 uppercase bg-<?= level_color($accident["level"]) ?>-300 rounded-md">Level: <?= $accident["level"] ?></span>
         </div>
 
