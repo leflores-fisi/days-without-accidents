@@ -15,13 +15,6 @@
 
   $last_accident_timestamp = $search_statement->fetch(PDO::FETCH_ASSOC)["timestamp"] ?? null;
 
-  if ($last_accident_timestamp) {
-    $seconds_without = (time() - $last_accident_timestamp);
-  }
-  else {
-    $seconds_without = "??";
-  }
-
   function level_color(int $level): string {
     return match($level) {
       1 => 'yellow',
@@ -33,11 +26,12 @@
 ?>
 
 <?php require_once "partials/header.php" ?>
+<script defer src="static/js/counter.js" type="text/javascript"></script>
 
 <main class="h-full mb-16">
   <div class="flex justify-center items-center bg-gray-600 h-64">
-    <div class="text-9xl font-mono mr-4"><?= $seconds_without ?></div>
-    <div class="text-2xl font-sans">seconds without accidents</div>
+    <div id="counter" class="text-9xl font-mono mr-4" data-timestamp="<?= $last_accident_timestamp ?>"></div>
+    <div class="text-2xl font-sans">days without accidents</div>
   </div>
   <div class="container m-auto p-3">
     <?php foreach ($accidents as $accident) : ?>
