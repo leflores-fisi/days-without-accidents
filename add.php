@@ -48,7 +48,7 @@
 <?php require_once "partials/header.php" ?>
 <main class="container m-auto px-16">
   <h2 class="text-2xl font-bold font-sans mt-6 mb-6">Report new accident</h2>
-  <form id="accident_form" action="addAccident.php" method="POST">
+  <form id="accident_form" action="add.php" method="POST">
     <div class="grid xl:grid-rows-2 xl:gap-6">
       <div class="flex relative z-0 mb-6 w-full group">
         <input type="text" name="title" id="floating_first_name" class="block pt-2.5 pb-1.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
