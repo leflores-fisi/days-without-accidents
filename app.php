@@ -11,6 +11,12 @@
   # Getting all the accidents data
   $accidents = $DBconnection->query("SELECT * FROM accidents WHERE user_id = {$_SESSION["user"]["user_id"]}");
 
+  $search_date_statement = $DBconnection->query("SELECT date FROM accidents ORDER BY date DESC LIMIT 1");
+  $last_accident_date = $search_date_statement->fetch(PDO::FETCH_ASSOC)["date"];
+  $last_accident_date = new DateTime($last_accident_date);
+
+  $days_without = (time() - $last_accident_date->getTimestamp())/60/60/24;
+
   function level_color(int $level): string {
     return match($level) {
       1 => 'yellow',
@@ -25,7 +31,7 @@
 
 <main class="h-full mb-16">
   <div class="flex justify-center items-center bg-gray-600 h-64">
-    <div class="text-9xl font-mono mr-4">000</div>
+    <div class="text-9xl font-mono mr-4"><?= $days_without ?></div>
     <div class="text-2xl font-sans">days without accidents</div>
   </div>
   <div class="container m-auto p-3">
