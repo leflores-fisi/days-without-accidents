@@ -12,3 +12,4 @@
 - Clone the repository
 - Install XAMPP or run via PHP *Built-in web server* typing `php -S <dir>`
 - If XAMPP is installed, move the folder to C:\xampp\htdocs
+- Execute the `setup.sql` and start Apache and MySql service
