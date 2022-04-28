@@ -25,7 +25,7 @@
           <div class="flex md:order-2 items-center">
             <?php if (isset($_SESSION["user"])): ?>
               <div class="mr-2">Logged as <span class="font-semibold"><?= $_SESSION["user"]["username"] ?></span></div>
-              <a class="inline-block m-auto bg-gray-100 font-thin w-fit border border-gray-400 px-6 mx-2 py-1 text-sm text-gray-600 rounded-sm" href="logout.php">
+              <a class="inline-block m-auto bg-gray-400 text-white font-thin w-fit border border-gray-400 px-6 mx-2 py-1 text-sm rounded-sm" href="logout.php">
                 Log out  
               </a>
             <?php else: ?>
