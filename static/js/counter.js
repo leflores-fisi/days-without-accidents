@@ -15,7 +15,7 @@ if (lastAccidentTimestamp) {
   
   const getSeconds = () => (calculateDifference() % 60).toString();
   const getMinutes = () => (Math.floor((calculateDifference() / 60) % 60)).toString();
-  const getHours   = () => (Math.floor((calculateDifference() / 60 / 60) % 60)).toString();
+  const getHours   = () => (Math.floor((calculateDifference() / 60 / 60) % 24)).toString();
   const getDays    = () => (Math.floor((calculateDifference() / 60 / 60 / 24))).toString();
 
   function updateCounter() {
