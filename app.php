@@ -39,15 +39,22 @@
 <script defer src="static/js/counter.js" type="text/javascript"></script>
 
 <main class="h-full mb-16">
-  <div class="flex justify-center items-center bg-gray-600 h-64">
+  <div class="flex justify-center items-center h-64 bg-gray-200">
     <?php if ($accidents->rowCount() > 0): ?>
-      <div id="counter" data-timestamp="<?= $last_accident_timestamp ?>" class="flex items-center">
-        <div id="days-counter"    class="text-9xl font-mono mr-4"></div>
-        <div id="hours-counter"   class="text-4xl font-mono mr-4"></div>:
-        <div id="minutes-counter" class="text-4xl font-mono mr-4"></div>:
-        <div id="seconds-counter" class="text-4xl font-mono mr-4"></div>
+      <div id="counter" data-timestamp="<?= $last_accident_timestamp ?>" class="flex items-start bg-gray-300 px-32 py-6 my-6 rounded-md">
+        <div>
+          <div id="days-counter" class="text-9xl font-bold text-center h-36 px-6 rounded-md bg-gray-200"></div>
+          <div class="flex items-center gap-1 justify-center">
+            <span id="hours-counter"   class="text-2xl font-sans"></span>:
+            <span id="minutes-counter" class="text-2xl font-sans"></span>:
+            <span id="seconds-counter" class="text-2xl font-sans"></span>
+          </div>
+        </div>
+        <div class="text-center ml-6 mt-4">
+          <div class="font-extrabold text-8xl">DAYS</div>
+          <div class="text-3xl font-semibold font-sans">without accidents</div>
+        </div>
       </div>
-      <div class="text-2xl font-sans">days without accidents</div>
     <?php endif ?>
   </div>
   <div class="container m-auto p-3">

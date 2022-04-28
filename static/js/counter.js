@@ -13,10 +13,10 @@ if (lastAccidentTimestamp) {
     return currentTimestamp - lastAccidentTimestamp; // in seconds
   }
   
-  const getSeconds = () => calculateDifference() % 60;
-  const getMinutes = () => Math.floor((calculateDifference() / 60) % 60);
-  const getHours   = () => Math.floor((calculateDifference() / 60 / 60) % 60);
-  const getDays    = () => Math.floor((calculateDifference() / 60 / 60 / 24));
+  const getSeconds = () => (calculateDifference() % 60).toString();
+  const getMinutes = () => (Math.floor((calculateDifference() / 60) % 60)).toString();
+  const getHours   = () => (Math.floor((calculateDifference() / 60 / 60) % 60)).toString();
+  const getDays    = () => (Math.floor((calculateDifference() / 60 / 60 / 24))).toString();
 
   function updateCounter() {
     const setCounterValue = (counter, newValue) => {
@@ -24,10 +24,10 @@ if (lastAccidentTimestamp) {
       if (currentValue != newValue || !currentValue)
         counter.textContent = newValue;
     }
-    setCounterValue(DaysCounter, getDays());
-    setCounterValue(HoursCounter, getHours());
-    setCounterValue(MinutesCounter, getMinutes());
-    setCounterValue(SecondsCounter, getSeconds());
+    setCounterValue(DaysCounter,    getDays());
+    setCounterValue(HoursCounter,   getHours().length === 1 ? `0${getHours()}` : getHours());
+    setCounterValue(MinutesCounter, getMinutes().length === 1 ? `0${getMinutes()}` : getMinutes());
+    setCounterValue(SecondsCounter, getSeconds().length === 1 ? `0${getSeconds()}` : getSeconds());
   }
   
   updateCounter();
