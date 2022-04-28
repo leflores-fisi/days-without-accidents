@@ -4,3 +4,12 @@
 h1, button {
   user-select: none;
 }
+.font0 {
+  font-size: 0;
+}
+.app-banner {
+  background-color: rgb(46, 45, 48);
+  padding: 5px;
+  border-radius: 5px;
+  padding-top: 15px;
+}

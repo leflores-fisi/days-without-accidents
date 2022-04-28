@@ -18,8 +18,8 @@
     <nav class="bg-gray-200 px-2 sm:px-4 py-2.5 border-b border-gray-400">
       <div class="container flex flex-wrap justify-between items-center mx-auto">
         <a href="index.php" class="flex items-center">
-          <div class="mr-3 h-6 sm:h-9 w-8 text-2xl" alt="DWA Logo"/>🌚</div>
-          <span class="text-gray-800 font-sans font-semibold whitespace-nowrap">Days without accidents</span>
+          <div class="flex items-center mr-3 h-6 sm:h-9 w-8 text-2xl" alt="DWA Logo"/>🌚</div>
+          <span class="text-gray-800 font-sans font-semibold whitespace-nowrap hidden sm:block">Days without accidents</span>
         </a>
         <?php if ($fileName != "login.php" && $fileName != "register.php"): ?>
           <div class="flex md:order-2 items-center">
