@@ -30,7 +30,7 @@
               <a class="inline-block m-auto bg-gray-100 font-thin w-fit border border-gray-400 px-6 mx-2 py-1 text-sm text-gray-600 rounded-sm" href="login.php">
                 Log in
               </a>
-              <a class="inline-block m-auto bg-gray-200 font-thin w-fit border border-gray-400 px-6 py-1 text-sm text-gray-600 rounded-sm" href="register.php">
+              <a class="inline-block m-auto bg-gray-600 font-thin w-fit border border-gray-400 px-6 py-1 text-sm text-gray-100 rounded-sm" href="register.php">
                 Try for free
               </a>
             <?php endif ?>
