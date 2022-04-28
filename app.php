@@ -27,6 +27,12 @@
       default => 'gray'
     };
   }
+  function timestampToDate($timestamp) {
+    $date = new DateTime();
+    $date->setTimestamp($timestamp);
+    $date->setTimezone(new DateTimeZone("UTC"));
+    return $date->format("Y, M d h:m e");
+  }
 ?>
 
 <?php require_once "partials/header.php" ?>
@@ -44,7 +50,7 @@
       <?php foreach ($accidents as $accident) : ?>
         <div class="w-full max-w-2xl px-4 py-3 mx-auto bg-white mt-4">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-mono font-light text-gray-500"><?= $accident["timestamp"] ?></span>
+            <span class="text-xs font-mono font-light text-gray-500"><?= timestampToDate($accident["timestamp"]) ?></span>
             <span class="px-3 py-1 text-xs text-white-800 uppercase bg-<?= level_color($accident["level"]) ?>-300 rounded-md">Level: <?= $accident["level"] ?></span>
           </div>
 
