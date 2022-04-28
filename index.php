@@ -1,4 +1,8 @@
-<?php session_start() ?>
+<?php
+  session_start();
+
+  if (isset($_SESSION["user"])) header("Location: app.php");
+?>
 
 <?php require_once "partials/header.php" ?>
 

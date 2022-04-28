@@ -1,5 +1,6 @@
 <?php
-  $fileName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);  
+  $fileName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
+  $has_session = isset($_SESSION["user"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@
   <header>
     <nav class="bg-gray-200 px-2 sm:px-4 py-2.5 border-b border-gray-400">
       <div class="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="index.php" class="flex items-center">
+        <a href=<?= $has_session? "app.php" : "index.php" ?> class="flex items-center">
           <div class="flex items-center mr-3 h-6 sm:h-9 w-8 text-2xl" alt="DWA Logo"/>🌚</div>
           <span class="text-gray-800 font-sans font-semibold whitespace-nowrap hidden sm:block">Days without accidents</span>
         </a>
