@@ -16,7 +16,8 @@
     $last_accident_timestamp = $search_statement->fetch(PDO::FETCH_ASSOC)["timestamp"] ?? null;
   }
   else {
-    $last_accident_timestamp = null;
+    $search_timestamp_statement = $DBconnection->query("SELECT counting_from FROM users WHERE user_id = {$_SESSION["user"]["user_id"]}");
+    $last_accident_timestamp = $search_timestamp_statement->fetch(PDO::FETCH_ASSOC)["counting_from"] ?? null;
   }
 
   function level_color(int $level): string {
@@ -40,7 +41,7 @@
 
 <main class="h-full mb-16">
   <div class="flex justify-center items-center h-64 bg-gray-200">
-    <?php if ($accidents->rowCount() > 0): ?>
+    <?php if ($last_accident_timestamp): ?>
       <div id="counter" data-timestamp="<?= $last_accident_timestamp ?>" class="flex items-start bg-gray-300 px-32 py-6 my-6 rounded-md">
         <div>
           <div id="days-counter" class="text-9xl font-bold text-center h-36 px-6 rounded-md bg-gray-200"></div>
@@ -55,6 +56,9 @@
           <div class="text-3xl font-semibold font-sans">without accidents</div>
         </div>
       </div>
+    <?php else: ?>
+      <span class="whitespace-pre text-lg">Log accidents to start counting or </span>
+      <a href="start_counter.php" class="underline text-lg font-semibold">start now</a>
     <?php endif ?>
   </div>
   <div class="container m-auto p-3">
