@@ -41,7 +41,12 @@
 <main class="h-full mb-16">
   <div class="flex justify-center items-center bg-gray-600 h-64">
     <?php if ($accidents->rowCount() > 0): ?>
-      <div id="counter" class="text-9xl font-mono mr-4" data-timestamp="<?= $last_accident_timestamp ?>"></div>
+      <div id="counter" data-timestamp="<?= $last_accident_timestamp ?>" class="flex items-center">
+        <div id="days-counter"    class="text-9xl font-mono mr-4"></div>
+        <div id="hours-counter"   class="text-4xl font-mono mr-4"></div>:
+        <div id="minutes-counter" class="text-4xl font-mono mr-4"></div>:
+        <div id="seconds-counter" class="text-4xl font-mono mr-4"></div>
+      </div>
       <div class="text-2xl font-sans">days without accidents</div>
     <?php endif ?>
   </div>
