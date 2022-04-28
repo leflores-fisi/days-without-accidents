@@ -6,7 +6,7 @@
   <div class="h-full mt-16 text-center justify-start">
     <div class="flex flex-col justify-start w-1/2">
       <h1 class="text-6xl mb-4 font-bold text-left">Days without<br>accidents</h1>
-      <span class="text-lg inline-flex text-left">Start counting and recording your accidents</span>
+      <h2 class="text-lg inline-flex text-left">Start counting and recording your accidents</h2>
     </div>
   </div>
 </main>
