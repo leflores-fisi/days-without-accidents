@@ -22,8 +22,9 @@
           <span class="text-gray-800 font-sans font-semibold whitespace-nowrap">Days without accidents</span>
         </a>
         <?php if ($fileName != "login.php" && $fileName != "register.php"): ?>
-          <div class="flex md:order-2">
+          <div class="flex md:order-2 items-center">
             <?php if (isset($_SESSION["user"])): ?>
+              <div class="mr-2">Logged as <span class="font-semibold"><?= $_SESSION["user"]["username"] ?></span></div>
               <a class="inline-block m-auto bg-gray-100 font-thin w-fit border border-gray-400 px-6 mx-2 py-1 text-sm text-gray-600 rounded-sm" href="logout.php">
                 Log out  
               </a>
